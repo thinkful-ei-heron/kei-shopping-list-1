@@ -5,7 +5,6 @@ $(function(){
     //prevent default behavior of form
     event.preventDefault();
     //grab the user input value
-    console.log('hi');
     const userInput = $(this).find('#shopping-list-entry').val();
     //find the unordered list ('shopping-list') and then append to it
     $('.shopping-list').append(
@@ -21,13 +20,15 @@ $(function(){
         </div>
       </li>`
     );
-    //on click of check, strikethrough
-    $('.shopping-item-toggle').on('click', function() {
-      $(this).closest('li').toggleClass('shopping-item shopping-item__checked');
-    });
-    //on click of remove, remove
-    $('.shopping-item-delete').on('click', function() {
-      $(this).closest('li').remove();
-    });
+  });
+  //on click of check, strikethrough
+  $('.shopping-list').on('click', '.shopping-item-toggle', function(event) {
+    //find the span for the shopping item and add the checked class
+    $(this).find('span').toggleClass(' shopping-item__checked');
+  });
+  //on click of remove, remove
+  $('.shopping-list').on('click', '.shopping-item-delete', function(event) {
+    //use .remove() to remove entire <li> element containing shopping item
+    $(this).closest('li').remove();
   });
 });
